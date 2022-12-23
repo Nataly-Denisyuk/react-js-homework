@@ -11,7 +11,7 @@ export const parser = (line: string): ParsedLineType | null => {
 
     const isValidNumberPush = !isNumber(prevItem) && isNumber(item);
     const isValidOperatorPush =
-      isNumber(prevItem) &&
+      (isNumber(prevItem) || prevItem === ")" || prevItem === "(") &&
       !isNumber(item) &&
       mathOperators.hasOwnProperty(item);
 
@@ -19,6 +19,10 @@ export const parser = (line: string): ParsedLineType | null => {
       result.push(Number(item));
     } else if (isValidOperatorPush) {
       result.push(item);
+      //console.log(item);
+    } else if (item === "(" || item === ")") {
+      result.push(item);
+      //console.info(result);
     } else {
       throw new TypeError("Unexpected string");
     }

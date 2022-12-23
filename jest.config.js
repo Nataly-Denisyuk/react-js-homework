@@ -8,4 +8,14 @@ module.exports = {
   transform: {
     "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
   },
+  modulePaths: ["src"],
+  testRegex: "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js|jsx)$",
+  testPathIgnorePatterns: ["\\.snap$", "\\.sass$", "<rootDir>/node_modules/"],
+
+  globals: {
+    "ts-jest": {
+      babel: true,
+      tsconfig: "tsconfig.json",
+    },
+  },
 };
